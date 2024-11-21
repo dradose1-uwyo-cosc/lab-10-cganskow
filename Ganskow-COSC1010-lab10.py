@@ -35,7 +35,7 @@ def get_hash(to_hash):
 #   - You must use a try and except block.
 try:
     path_hash = Path('hash')
-    content_hash = path_hash.read_text()
+    content_hash = path_hash.read_text().strip()
 except:
     print('hash file not found')
 
@@ -47,13 +47,14 @@ except:
 
 try:
     path_rock = Path('rockyou.txt')
-    content_rock = path_rock.read_text()
+    content_rock = path_rock.read_text().splitlines()
 except: 
     print("file not found")
 
 for line in content_rock:
-    if get_hash(line) == content_hash:
+    test_pass = get_hash(line).strip()
+    if test_pass == content_hash:
         print(f"The password is {line}")
         break
     else:
-        print("no")
+        pass
